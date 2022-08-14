@@ -1,0 +1,297 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 201
+  ClientWidth = 337
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Edit1: TEdit
+    Left = 40
+    Top = 32
+    Width = 265
+    Height = 21
+    Alignment = taRightJustify
+    TabOrder = 0
+    Text = '0'
+  end
+  object Bt8: TButton
+    Left = 112
+    Top = 72
+    Width = 57
+    Height = 25
+    Caption = '8'
+    TabOrder = 1
+    OnClick = NumeroClick
+  end
+  object Bt9: TButton
+    Left = 184
+    Top = 72
+    Width = 56
+    Height = 25
+    Caption = '9'
+    TabOrder = 2
+    OnClick = NumeroClick
+  end
+  object BtSomar: TButton
+    Left = 264
+    Top = 72
+    Width = 41
+    Height = 25
+    Caption = '+'
+    TabOrder = 3
+    OnClick = BtSomarClick
+  end
+  object Bt7: TButton
+    Left = 40
+    Top = 72
+    Width = 57
+    Height = 25
+    Caption = '7'
+    TabOrder = 4
+    OnClick = NumeroClick
+  end
+  object Btmenos: TButton
+    Left = 264
+    Top = 103
+    Width = 41
+    Height = 25
+    Caption = '-'
+    TabOrder = 5
+    OnClick = BtmenosClick
+  end
+  object Btvezes: TButton
+    Left = 264
+    Top = 134
+    Width = 41
+    Height = 25
+    Caption = 'x'
+    TabOrder = 6
+    OnClick = BtvezesClick
+  end
+  object BtDividir: TButton
+    Left = 264
+    Top = 165
+    Width = 41
+    Height = 25
+    Caption = '/'
+    TabOrder = 7
+    OnClick = BtDividirClick
+  end
+  object Bt4: TButton
+    Left = 40
+    Top = 103
+    Width = 57
+    Height = 25
+    Caption = '4'
+    TabOrder = 8
+    OnClick = NumeroClick
+  end
+  object Bt5: TButton
+    Left = 112
+    Top = 103
+    Width = 57
+    Height = 25
+    Caption = '5'
+    TabOrder = 9
+    OnClick = NumeroClick
+  end
+  object Bt6: TButton
+    Left = 184
+    Top = 103
+    Width = 57
+    Height = 25
+    Caption = '6'
+    TabOrder = 10
+    OnClick = NumeroClick
+  end
+  object Bt1: TButton
+    Left = 40
+    Top = 134
+    Width = 57
+    Height = 25
+    Caption = '1'
+    TabOrder = 11
+    OnClick = NumeroClick
+  end
+  object Bt2: TButton
+    Left = 112
+    Top = 134
+    Width = 57
+    Height = 25
+    Caption = '2'
+    TabOrder = 12
+    OnClick = NumeroClick
+  end
+  object Button10: TButton
+    Left = 184
+    Top = 134
+    Width = 57
+    Height = 25
+    Caption = '3'
+    TabOrder = 13
+    OnClick = NumeroClick
+  end
+  object Btlimpar: TButton
+    Left = 40
+    Top = 165
+    Width = 57
+    Height = 25
+    Caption = 'Limpar'
+    TabOrder = 14
+    OnClick = BtlimparClick
+  end
+  object Bt0: TButton
+    Left = 112
+    Top = 165
+    Width = 57
+    Height = 25
+    Caption = '0'
+    TabOrder = 15
+    OnClick = NumeroClick
+  end
+  object BtIgual: TButton
+    Left = 184
+    Top = 165
+    Width = 57
+    Height = 25
+    Caption = '='
+    TabOrder = 16
+    OnClick = BtIgualClick
+  end
+end
+
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Edit1: TEdit;
+    Bt8: TButton;
+    Bt9: TButton;
+    BtSomar: TButton;
+    Bt7: TButton;
+    Btmenos: TButton;
+    Btvezes: TButton;
+    BtDividir: TButton;
+    Bt4: TButton;
+    Bt5: TButton;
+    Bt6: TButton;
+    Bt1: TButton;
+    Bt2: TButton;
+    Button10: TButton;
+    Btlimpar: TButton;
+    Bt0: TButton;
+    BtIgual: TButton;
+    procedure BtSomarClick(Sender: TObject);
+    procedure BtmenosClick(Sender: TObject);
+    procedure BtvezesClick(Sender: TObject);
+    procedure BtDividirClick(Sender: TObject);
+    procedure NumeroClick(Sender: TObject);
+    procedure BtIgualClick(Sender: TObject);
+    procedure BtlimparClick(Sender: TObject);
+  private
+
+  FOperacao : char;
+  FTotal : Double;
+  FUltimonumero : double;
+
+  Procedure calcular;
+  Procedure Limpar;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.BtDividirClick(Sender: TObject);
+begin
+  FUltimonumero := StrToFloat (Edit1.text);
+  Calcular;
+  Foperacao := '/';
+end;
+
+procedure TForm1.NumeroClick(Sender: TObject);
+begin
+  if Fultimonumero = 0 then
+    Edit1.text := Tbutton(sender).caption
+  else
+    Edit1.text := Edit1.text + Tbutton(sender).caption;
+    Fultimonumero :=  strtofloat (edit1.text);
+end;
+
+
+
+procedure TForm1.BtIgualClick(Sender: TObject);
+begin
+  Calcular;
+end;
+
+procedure TForm1.BtlimparClick(Sender: TObject);
+begin
+ Limpar;
+end;
+
+procedure TForm1.BtmenosClick(Sender: TObject);
+begin
+  FUltimonumero := StrToFloat (Edit1.text);
+  Calcular;
+  Foperacao := '-';
+end;
+
+procedure TForm1.BtSomarClick(Sender: TObject);
+begin
+   FUltimonumero := StrToFloat (Edit1.text);
+   Calcular;
+   Foperacao := '+';
+end;
+
+procedure TForm1.BtvezesClick(Sender: TObject);
+begin
+  FUltimonumero := StrToFloat (Edit1.text);
+  Calcular;
+  Foperacao := '*';
+end;
+
+procedure TForm1.calcular;
+begin
+
+  case FOperacao of
+    '+' : Ftotal := Ftotal + strTofloat (Edit1.text);
+    '-' : FTotal := Ftotal - StrToFloat (edit1.text);
+    '*' : FTotal := Ftotal * StrToFloat (edit1.text);
+    '/' : FTotal := Ftotal / StrToFloat (edit1.text);
+  end;
+
+     Edit1.text := FloatToStr (Ftotal);
+     Fultimonumero := 0;
+
+end;
+
+procedure TForm1.Limpar;
+begin
+   Fultimonumero := 0;
+   Edit1.text := '0';
+   FOperacao := '+';
+   Ftotal := 0;
+end;
+
+end.
